@@ -1,15 +1,16 @@
 !!!
-%html
+%html{"ng-app"=>"scarejoe"}
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Scarejoe'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Scarejoe'}"}
-    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    %title= content_for?(:title) ? yield(:title) : "Joe's Horror Movies"
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'All the horror movies.'}"}
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     %header
       = render 'layouts/navigation'
     %main{:role => "main"}
       = render 'layouts/messages'
-      = yield
+      %div{"ng-view"=>""}
+        = yield
